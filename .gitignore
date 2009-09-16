@@ -1,0 +1,10 @@
+config-local.php
+tpc/
+*.xml
+*.jpg
+*.png
+*.gif
+*.ico
+*.bmp
+*.tif
+*.tiff
