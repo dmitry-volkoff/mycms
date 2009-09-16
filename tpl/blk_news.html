@@ -1,0 +1,44 @@
+{static_html:h}
+
+{if:filter}
+<div>
+{filter}
+</div>
+{end:}
+
+{if:rows}
+<div class="news news-list">
+<table width="90%" border="0px" cellspacing="0px" cellpadding="2px">
+{foreach:rows,key,row}
+
+{if:row[split_start]} 
+<tr>
+{end:}
+<td>
+	<div class="news-annonce" style="margin-bottom: 1em;">
+	<table width="100%" border="0px" cellspacing="0px" cellpadding="2px">
+{if:row[title]}
+	<tr>
+		<td><img src="img/news-marker.png" alt="" width="11px" height="13px" border="0px" style="margin: 5px;" /></td>
+		<td><b>{row[title]:h}</b></td>
+	</tr>
+{end:}
+	<tr>
+		<td></td>
+		<td><a href="{row[link]}">{row[content]:h}</a></td>
+	</tr>
+	</table>
+	</div>
+</td>
+
+{if:row[split_end]}
+</tr>
+{end:}
+{end:}
+</table>
+</div>
+
+<div class="pager" align="center">
+{pager:h}
+</div>
+{end:}

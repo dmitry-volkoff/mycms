@@ -1,0 +1,54 @@
+{static_html:h}
+
+<div>
+	<h2>{item[name]}</h2>
+	{item[description]:h} 
+</div>
+
+<table width="100%" cellpadding="5" cellspacing="0" border="0">
+<tr>
+    <td width="400px" valign="top">
+	<table class="tbl1" width="90%">
+{if:item[brand_fk]}
+	<tr>
+		<td align="right" width="30%"><strong>Brand</strong></td>
+		<td>{item[brand_fk]}</td>
+	</tr>
+{end:}
+{if:item[model_fk]}
+	<tr>
+		<td align="right" width="30%"><strong>Model</strong></td>
+		<td>{item[model_fk]}</td>
+	</tr>
+{end:}
+{if:item[country_fk_dont_show_for_now]}
+	<tr>
+		<td align="right" width="30%"><strong>Country of origin</strong></td>
+		<td>{item[country_fk]}</td>
+	</tr>
+{end:}
+	<tr>
+		<td align="right" width="30%"><strong>Stock</strong></td>
+		<td>{item[stock]}</td>
+	</tr>
+	<tr>
+		<td align="right" width="30%"><strong>Price</strong></td>
+		<td>{item[price]}</td>
+	</tr>
+	</table>
+    </td>
+    <td valign="top" align="left">
+	<table cellpadding="5" cellspacing="0" border="0">
+{foreach:photos,key,href}
+	<tr>
+	    <td>
+		<img src='{href}' border='0' width="250px" alt="{item[alt]}" title="{item[alt]}" border="1px" />
+	    </td>
+	</tr>
+{end:}
+	</table>
+    </td>
+</tr>
+</table>
+
+<a href="javascript:window.history.back();">&#8592;&nbsp;{_(Go Back)_}</a>

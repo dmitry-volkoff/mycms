@@ -1,0 +1,14 @@
+{static_html:h}
+<br />
+<p>
+<table cellpadding="3" cellspacing="3" border="0">
+<tr><td align="right" valign="top">{_(Tel)_}.:&nbsp</td><td align="left">{site_phone:h}</td></tr>
+{if:site_phone2}
+<tr><td align="right" valign="top">&nbsp</td><td align="left">{site_phone2:h}</td></tr>
+{end:}
+{if:site_address}
+<tr><td align="right" valign="top">{_(Address)_}:&nbsp</td><td align="left">{site_address:h}</td></tr>
+{end:}
+<tr><td align="right" valign="top">{_(Email)_}:&nbsp</td><td align="left">{site_email:h}</td></tr>
+</table>
+</p>

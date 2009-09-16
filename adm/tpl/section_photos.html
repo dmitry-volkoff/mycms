@@ -1,0 +1,33 @@
+<table width="90%">
+<tr>
+<td>
+
+<fieldset style="padding: .5em; width: 60%;">
+<legend>{_(Images)_}</legend>
+<table class="tbl1">
+<tr>
+
+{foreach:photos,key,photo}
+<td valign="bottom">
+    <table border="0" width="80px">
+    <tr> 
+	<td> 
+	    <img src="{photo[src]:h}" width="80px" border="1" alt="">
+	</td>
+    </tr>
+    <tr>
+	<td> 
+	    <a href="{photo[del_href]}">{_(Delete)_}</a>
+	</td>
+    </tr>
+    </table>
+</td>
+{end:}
+
+</tr>
+</table>
+</fieldset>
+
+</td>
+</tr>
+</table>

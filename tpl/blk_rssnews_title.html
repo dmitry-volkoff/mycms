@@ -1,0 +1,9 @@
+{static_html:h}
+<div>
+<dl>
+{foreach:rows,key,row}
+	<dt style="margin-top:1em;"><img src="img/marker-menu.gif" alt="" width="4px" height="3px" style="vertical-align:15%;margin-right:1em;" />{row[title]:h}</dt>
+	<dd><a href="{row[link]}">{row[description]:h}</a></dd>
+{end:}
+</dl>
+</div>

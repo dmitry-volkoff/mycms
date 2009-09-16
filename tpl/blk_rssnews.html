@@ -1,0 +1,8 @@
+{static_html:h}
+<div>
+<ul>
+{foreach:rows,key,row}
+	<li class="newsitem"><a target="_blank" href="{row[link]}">{row[description]:h}</a></li>
+{end:}
+</ul>
+</div>

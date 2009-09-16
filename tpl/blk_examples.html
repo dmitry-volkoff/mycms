@@ -1,0 +1,47 @@
+{static_html:h}
+
+{if:filter}
+<div>
+{filter}
+</div>
+{end:}
+
+{if:rows}
+<div align="center">
+
+<table width="90%" border="0px" cellspacing="0px" cellpadding="2px">
+{foreach:rows,key,row}
+
+{if:row[split_start]} 
+<tr>
+{end:}
+
+	<td>
+	
+	<table width="100%" border="0px" cellspacing="0px" cellpadding="2px">
+{if:row[brand_fk]} 
+	<tr>
+		<td align="center">{row[brand_fk]} {row[model_fk]}</td>
+	</tr>
+{end:}
+	<tr>
+		<td align="center"><a href="{row[link]}"><img alt="{row[name]}" title="{row[name]}" src="{row[photo_file]}" width="{row[photo_width]}px" style=" border: 1px solid #8ad1ed;" /></a></td>
+	</tr>
+	<tr>
+		<td align="center">{row[name]}</td>
+	</tr>
+	</table>
+
+	</td>
+
+{if:row[split_end]}
+	</tr>
+{end:}
+{end:}
+</table>
+</div>
+
+<div class="pager" align="center">
+{pager:h}
+</div>
+{end:}

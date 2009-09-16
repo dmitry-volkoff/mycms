@@ -1,0 +1,10 @@
+{foreach:items,key,item}
+{if:item[index_first]}
+<div style="float: left; width: 7px;">&nbsp;</div>
+{end:}
+{if:item[active]}
+<div class="buttontop active" align="center" style="float: left; background: url(img/buttontop.png); position: relative; top: 17px; width: 112px; height: 32px; z-index: 99; padding-top: 8px; margin-left: 5px;"><a href="{item[link]}">{item[name]}</a></div>
+{else:}
+<div class="buttontop" align="center" style="float: left; background: url(img/buttontop.png); position: relative; top: 17px; width: 112px; height: 32px; z-index: 99; padding-top: 8px; margin-left: 5px;"><a href="{item[link]}">{item[name]}</a></div>
+{end:}
+{end:}

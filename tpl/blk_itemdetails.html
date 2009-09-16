@@ -1,0 +1,13 @@
+{static_html:h}
+
+<div>
+<table border="1px" cellspacing="0px" cellpadding="2px"> 
+{foreach:item,fldname,val}
+<tr>
+	<td>{fldname}:</td>
+	<td>{val:h}</td>
+</tr>
+{end:}
+</table>
+</div>
+<a href="javascript:window.history.back();">&#8592;&nbsp;{_(Go Back)_}</a>

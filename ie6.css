@@ -1,0 +1,16 @@
+/* IE6 min-width hack */
+div#head-txt-right {
+   width:expression(document.body.clientWidth < 900 ? "900px" : "97%");
+}
+div#site-phone {
+  width:expression(document.body.clientWidth < 900 ? "850px" : "97%");
+}
+div#footer-right-container {
+width:expression(document.body.clientWidth < 900 ? "800px" : "110%") !important;
+}
+div#footer-right {
+  width:10%;
+}
+div#breadcrumbs {
+width:expression(document.body.clientWidth < 900 ? "100%" : "100%") !important;
+}

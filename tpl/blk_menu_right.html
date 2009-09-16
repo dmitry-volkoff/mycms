@@ -1,0 +1,60 @@
+<table class="menu" border="0" cellpadding="0px" cellspacing="0px" width="100%"> 
+<tr>
+<td class="menu-plate menu2">
+<table class="menu parent" border="0px" cellpadding="0px" cellspacing="0px" width="100%"> 
+<tr>
+<td class="active parent"><a href="">ICQ</a></td>
+<td class="icon active parent">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td>
+<div class="column-right">
+{blk_page(#icq-block#):h}
+</div>
+</td>
+</tr>
+
+<tr>
+<td class="menu-plate menu6">
+<table class="menu parent" border="0px" cellpadding="0px" cellspacing="0px" width="100%"> 
+<tr>
+<td class="active parent odd"><a href="specials">Спецпредложения</a></td>
+<td class="icon active parent odd">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td>
+<div class="column-right">
+{blk_page(#specials-block#):h}
+</div>
+</td>
+</tr>
+{if:main_add}
+<tr>
+<td class="menu-plate menu6">
+<table class="menu parent" border="0px" cellpadding="0px" cellspacing="0px" width="100%"> 
+<tr>
+<td class="active parent"><a href="news">Новости</a></td>
+<td class="icon active parent">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td>
+<div class="column-right">
+{blk_rssnews():h}
+</div>
+</td>
+</tr>
+{end:}
+
+</table>

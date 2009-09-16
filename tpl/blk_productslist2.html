@@ -1,0 +1,44 @@
+{static_html:h}
+
+{if:debug}
+<div>
+{debug:h}
+</div>
+{end:}
+
+{if:filter}
+<div>
+{filter:h}
+</div>
+{end:}
+
+{if:rows}
+<div align="center">
+<table width="90%" border="1px" cellspacing="0px" cellpadding="2px">
+	<tr>
+		<th>¹</th>
+		<th>Name</th>
+		<th>Brand</th>
+		<th>Model</th>
+		<th>Photo</th>
+		<th>Price</th>
+	</tr>
+{foreach:rows,key,row}
+	<tr>
+		<td width="5%" align="right">{row[id]}</td>
+		<td width="35%"><a href="{row[link]}">{row[name]}</a></td>
+		<td>{row[brand_fk]}</td>
+		<td>{row[model_fk]}</td>
+		<td width="50px"><a href="{row[link]}"><img alt="" src="{row[photo]}" width="50px" border="0" /></a></td>
+		<td width="10%" align="right">{row[price]}</td>
+	</tr>
+{end:}
+</table>
+</div>
+
+{if:pager}
+<div class="pager" align="center">
+{pager:h}
+</div>
+{end:}
+{end:}

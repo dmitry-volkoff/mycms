@@ -1,0 +1,79 @@
+1:::The item %s is required.::::::Графа %s должна быть заполнена
+2:::The item %s must be numbers only.::::::Графа %s может содержать только цифры
+3:::The item %s can have no more than %d characters.::::::Графа %s может содержать не более %d символов
+4:::ID::::::
+5:::Title (ru)::::::Заголовок
+6:::Title (en)::::::
+7:::Type::::::
+8:::Format::::::
+9:::Content (ru)::::::Содержание
+10:::Content (en)::::::
+11:::Menu liaison::::::Связь с меню
+12:::Link::::::Ссылка
+13:::Under construction::::::
+14:::Parent::::::Категория
+15:::Name (ru)::::::Наименование
+16:::Name (en)::::::
+17:::Hide::::::Скрыть
+18:::Weight::::::Вес
+19:::Main::::::Главная
+20:::Site menu::::::Меню сайта
+21:::Pages::::::Страницы
+22:::Add new record::::::Добавить запись
+23:::Submit::::::Отправить
+24:::denotes required field::::::графы, обязательные для заполнения
+25:::Edit::::::Править
+26:::Delete::::::Удалить
+27:::Are you really want to delete this item?::::::
+28:::Edit record::::::Редактировать запись
+29:::Quit edit mode::::::Выход из редактирования
+30:::Site pages::::::Страницы сайта
+31:::Template Product Types::::::
+33:::Record added successfully::::::Запись успешно добавлена
+34:::Message::::::Сообщение
+35:::Tpl Logotypes::::::
+36:::Colors::::::Цвета
+37:::Color::::::Цвет
+38:::Code::::::Код
+39:::Copyright &copy; 2002-2006 Футболка.Ру::::::
+40:::Sizes::::::Размеры
+41:::No photo::::::Нет изображений
+42:::Record updated successfully::::::Запись успешно обновлена
+43:::Currency::::::Валюта
+44:::Rate::::::Курс
+45:::&nbsp;&nbsp;Сегодня:::::::
+46:::Short Name (ru)::::::Краткое название
+47:::Short Name (en)::::::
+48:::I18n::::::
+49:::Products::::::Товары
+50:::Description (ru)::::::Описание
+51:::Keywords (ru)::::::Ключевые слова
+52:::Description (en)::::::
+53:::Keywords (en)::::::
+54:::Tpl products::::::Шаблоны товаров
+55:::Goods type::::::
+56:::Price::::::Цена
+57:::Date entered::::::Дата ввода
+58:::Description::::::
+59:::Hot Offers::::::Витрина
+60:::Gift::::::Подарок
+61:::Product Types::::::Типы товаров
+62:::Product type::::::Тип товара
+63:::Error::::::Ошибка
+64:::Photo::::::
+65:::Must be a jpeg::::::
+66:::Image::::::Изображение
+67:::Must be a png::::::
+68:::Cannot move uploaded file::::::
+69:::Photos::::::
+70:::Images::::::Изображения
+71:::Properties::::::Свойства
+72:::Product::::::Товар
+73:::Priority::::::Приоритет
+74:::Must be a jpg/png::::::
+75:::Go Back::::::Назад
+76:::size::::::
+77:::name_ru::::::
+78:::Quantity::::::Количество
+79:::No such ID::::::Запись не найдена
+80:::Search::::::Поиск

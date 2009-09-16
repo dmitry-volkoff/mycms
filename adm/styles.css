@@ -1,0 +1,140 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    font: 10pt sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+ul {
+	margin-left: 2em;
+	padding-left: 1em;
+}
+
+li.arr {
+	list-style-position: outside;
+	list-style-image: url("img/li.gif");
+	margin-left: -2.5em;
+	margin-top: .5em;
+	text-indent: 0em;
+}
+
+li.sub {
+	list-style-position: outside;
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: -2.5em;
+	margin-bottom: .2em;
+	text-indent: 0em;
+}
+
+.gray {
+	color: #666666;
+}
+
+.small {
+	font-size: 70%;
+}
+
+.blue {
+	color: #5D76BF;
+}
+
+h3 {
+	font-size: 120%;
+	color: #3E5188;
+	margin-bottom: 4px;
+	text-transform: uppercase;
+}
+
+a:active, a:focus, a:link, a:visited {
+	color: #006CB8;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a.menulink:active, a.menulink:focus, a.menulink:link, a.menulink:visited {
+	color: #3255B7;
+	text-decoration: none;
+}
+
+a.menuactive {
+	color: #3255B7;
+	font-weight: bold;
+	text-decoration: none;;
+}
+
+a.menulink:hover {
+	text-decoration: underline;
+	color: #000000;
+}
+
+.tbl1{
+	background-color : #e0e0e0;
+}
+.tbl1 td {
+	font-size : 9pt;
+	color : #0f238c;
+	background-color : #ffffff;
+	padding: .5em;
+}
+
+/* Forms */
+form {
+    margin: 0;
+    padding: 0;
+    min-width: 500px;
+    max-width: 600px;
+    width: 560px;
+}
+form fieldset {
+    border: 1px solid black;
+    padding: 10px 0;
+    margin: 0;
+    width: 560px;
+}
+form fieldset.hidden {
+    border: 0;
+}
+form fieldset legend {
+    font-weight: bold;
+}
+form label {
+    margin: 0 0 0 5px;
+}
+form label.qflabel {
+    display: block;
+    float: left;
+    width: 150px;
+    padding: 0;
+    margin: 5px 0 0 0;
+    text-align: right;
+}
+form input, form textarea, form select {
+    width: auto;
+}
+form textarea {
+    overflow: auto;
+}
+form br {
+    clear: left;
+}
+form div.qfelement {
+    display: inline;
+    float: left;
+    margin: 5px 0 0 10px;
+    padding: 0;
+}
+form div.qfreqnote {
+    font-size: 80%; 
+}
+form span.error, form span.required {
+    color: red;
+}
+form div.error {
+    border: 1px solid red;
+    padding: 5px;
+}

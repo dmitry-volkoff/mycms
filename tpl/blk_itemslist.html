@@ -1,0 +1,15 @@
+{static_html:h}
+<div>
+<table border="1px" cellspacing="0px" cellpadding="2px">
+{foreach:rows,key,row}
+	<tr>
+	{foreach:row,fldname,val}
+	<td width="20%">{fldname}: {val}</td>
+	{end:}
+	</tr>
+{end:}
+</table>
+</div>
+<div class="pager" align="center">
+{pager:h}
+</div>

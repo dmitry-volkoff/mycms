@@ -1,0 +1,48 @@
+{form.outputHeader():h}
+{form.hidden:h} 
+<table border="0" class="tbl1">
+        {foreach:form.elements,elem} 
+            {if:elem.style} 
+              {elem.outputStyle():h}
+            {else:}
+		{if:elem.isButton()} 
+                    {if:elem.notFrozen()} 
+                    <tr>    
+                        <td>&nbsp;</td> 
+                        <td align="right">{elem.html:h}</td> 
+                    </tr> 
+                    {end:} 
+                {else:} 
+                    <tr> 
+                    {if:elem.isType(#textarea#)}                
+                        <td colspan="2"> 
+                            {if:elem.required}<span class="error">*</span>{end:}
+                            {if:elem.error}<span class="error">{end:}
+                            <b>{elem.label:h}:</b><br />
+                            {if:elem.error}</span>{end:}
+                    {else:} 
+                        <td align="right"> 
+                            {if:elem.required}<span class="error">*</span>{end:}
+                            {if:elem.error}<span class="error">{end:}
+                            <b>{elem.label:h}</b>
+                            {if:elem.error}</span>{end:}
+                        </td> 
+                        <td> 
+                    {end:}  
+                    {if:elem.error}<div class="error">{elem.error}</div>{end:} 
+                    {if:elem.isType(#group#)} 
+                        {foreach:elem.elements,gitem} 
+                            {gitem.label:h} 
+                            {gitem.html:h}{if:gitem.required}<span class="error">*</span>*</span>{end:}
+                            {if:elem.separator}{elem.separator:h}{end:}
+                        {end:} 
+                    {else:} 
+                        {elem.html:h} 
+                    {end:} 
+                    </td> 
+                    </tr> 
+                {end:} 
+            {end:}    
+        {end:} 
+</table> 
+</form>

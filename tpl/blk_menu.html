@@ -1,0 +1,63 @@
+<table class="menu" border="0" cellpadding="1px" cellspacing="1px" width="100%"> 
+{foreach:items,key,item}
+	{if:item[odd_position]}
+	<tr>
+	<td class="menu-plate menu{key}">
+		<table class="menu parent" border="0" cellpadding="0" cellspacing="0" width="100%"> 
+		<tr>
+			<td class="active parent{item[odd_position]}"><a href="{item[link]}">{item[name]}</a></td>
+			<td class="icon active parent{item[odd_position]}">
+			<a href="{item[link]}"><img style="margin-right:25px;" src="img/marker-menu2.gif" alt="" border="0px" width="11px" height="11px" /></a>
+			</td>
+		</tr>
+		</table><br />
+	</td>
+	</tr>
+	{else:}
+	<tr>
+	<td class="menu-plate menu{key}">
+		<table class="menu parent" border="0" cellpadding="0" cellspacing="0" width="100%"> 
+		<tr>
+			<td class="active parent{item[odd_position]}"><a href="{item[link]}">{item[name]}</a></td>
+			<td class="icon active parent{item[odd_position]}">
+			<a href="{item[link]}"><img style="margin-right:25px;" src="img/marker-menu2.gif" alt="" border="0px" width="11px" height="11px" /></a>
+			</td>
+		</tr>
+		</table><br />
+	</td>
+	</tr>
+	{end:}
+
+	{if:item[childs]}
+	<tr>
+	<td>
+		<table class="menu child" border="0" cellpadding="2" cellspacing="2" width="100%"> 
+		{foreach:item[childs],key,child}
+		<tr>
+			{if:child[odd_position]}
+			<td class="icon child{child[odd_position]}"><img border="0" alt="" width="4px" height="3px" src="img/marker-menu.gif" /></td>
+			<td>&nbsp;</td>
+			<td class="child{child[odd_position]}"><a href="{child[link]}">{child[name]}</a></td>
+			{else:}
+			<td class="icon child{child[odd_position]}"><img border="0" alt="" width="4px" height="3px" src="img/marker-menu.gif" /></td>
+			<td>&nbsp;</td>
+			<td class="child{child[odd_position]}"><a href="{child[link]}">{child[name]}</a></td>
+			{end:}
+		</tr>	
+		{end:}
+		</table><br />
+	</td>
+	</tr>
+	{end:}
+{end:}
+	<tr>
+	<td>
+		<table class="menu parent" border="0" cellpadding="0" cellspacing="0" width="100%"> 
+		<tr>
+		<td class="parent">&nbsp;</td>
+		<td width="6px" height="5px" style="background:white;">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+</table>

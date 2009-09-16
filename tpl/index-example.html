@@ -1,0 +1,54 @@
+<div id="header" style="height: 224px; width: 100%;">
+	{header:h}
+</div>
+<div id="main" style="width: 100%; margin-bottom: 1em; position: relative; margin-top: -5em; margin-left: 1em; margin-right: 1em; min-height: 60% !important;">
+<table cellpadding="0" border="0" cellspacing="0" width="100%" style="">
+<tr>
+	<td width="200px" valign="top">
+	<div id="leftcolumn" style="width: 200px;">
+		<div id="vertmenu">
+		{mainmenu:h}
+		</div>
+	</div><!--/leftcolumn-->
+	</td>
+	<td>
+	<div id="rightcolumn" style="padding-left: 3em; padding-right: 2em;">
+		<!-- main content -->
+		{if:title}
+		<h1 class="content-title">{title}</h1>
+		{end:}
+		<div id="main-content">
+		{content:h}
+		</div>
+		<!--/ main content-->
+		{if:main_add}
+		<div id="photos" style="text-align: center; width: 100%;">
+		<a href="examples"><img alt="" src="img/photos.jpg" width="681px" height="113px" border="0px" /></a>
+		</div>
+		<div id="info" style="margin-top: 2em;">
+		<table cellpadding="0" border="0" cellspacing="0" width="100%" style="">
+		<tr>
+		<td width="60%">{news:h}&nbsp;</td>
+		<td width="40%">
+			<div id="site-address" style=""><div class="label">{_(Address)_}:</div>{site_address}</div>
+			<div id="site-phone2" style=""><div class="label">{_(Phone/Fax)_}:</div>+7 495 {site_phone}</div>
+		</td>
+		</tr>
+		</table>
+		</div>
+		{end:}
+	</div><!--/rightcolumn-->
+	</td>
+</tr>
+</table>
+</div><!--/main-->
+
+<hr style="width:90% !important;" />
+
+<div id="hormenu" style="text-align: center;  padding: .5em;">
+<a href="/">About</a>&nbsp;|&nbsp;<a href="contacts">Contacts</a>
+</div>
+<hr style="width:90% !important;" />
+<div id="footer" style="width: 100%; text-align: center; position: relative; margin-top: 2em;">
+	{footer:h}
+</div>

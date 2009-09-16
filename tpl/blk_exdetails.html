@@ -1,0 +1,22 @@
+{static_html:h}
+
+<div>
+{if:item[name_ALLOW]}
+	<h2>{item[name]}</h2>
+{end:}
+{if:item[brand_fk]}
+	<h3>{item[brand_fk]} {item[model_fk]}</h3>
+{end:}
+	<div>
+	{item[description]:h} 
+	</div>
+</div>
+
+<div>
+{foreach:photos,key,photo}
+	<img src='{photo[photo_file]}' border='1px' width="{photo[photo_width]}px" alt="{item[name]}" title="{item[name]}" style="float:left; margin-left: 5px; margin-bottom: 5px;" />
+{end:}
+</div>
+<div style="clear: both">
+<a href="javascript:window.history.back();">&#8592;&nbsp;{_(Go Back)_}</a>
+</div>

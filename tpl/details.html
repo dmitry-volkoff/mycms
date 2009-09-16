@@ -1,0 +1,48 @@
+<table width="100%" cellpadding="5" cellspacing="0" border="0">
+<tr>
+    <td width="400" valign="top">
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	    <td valign="top" bgcolor="#f0f0f0">
+		<table width="400" cellpadding="1" cellspacing="1" border="0">
+		<tr bgcolor="#FFFFFF">
+		    <td colspan="2" align="center"><br /><h2><font color="#77220B">{obj[name]}<br /></font></h2></td>
+		</tr>
+{foreach:obj[common],key,prop}
+		<tr bgcolor="#FFFFFF">
+		    <td><strong>{prop[title]}: </strong></td><td>{prop[value]}</td>
+		</tr>
+{end:}
+{if:obj[description][value]}
+		<tr bgcolor="#f0f0f0">
+		    <td colspan="2" align="center"><b>{obj[description][title]}</b></td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+		    <td colspan="2">{obj[description][value]:h}</td>
+		</tr>
+{end:}
+		</table>
+	    </td>
+	</tr>
+	</table>
+	<br />
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td><a href="{href_back}">&#8592;&nbsp;{_(Go Back)_}</a>&nbsp;</td>
+		<td align="right"><a href="{href_to_basket:h}">{_(To Basket)_}&nbsp;&#8594;</a></td>
+	</tr>
+	</table>
+    </td>
+    <td valign="top" align="left">
+	<table cellpadding="5" cellspacing="0" border="0">
+{foreach:obj[photos],key,href}
+	<tr>
+	    <td>
+		<img src='{href}' border='0' width="250" alt="photo" />
+	    </td>
+	</tr>
+{end:}
+	</table>
+    </td>
+</tr>
+</table>

@@ -1,0 +1,57 @@
+<div id="container" style="position: absolute; z-index: 1;">
+<div id="header" style="height: 75px;">
+<!--header-->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" height="75">
+	<tr>
+	    <td width="40%"><IMG src="img/top_left.gif" alt="" width="374" height="75" border="0" hspace="25" />
+	    </td>
+	    <td width="30%">&nbsp;
+	    </td>
+	    <td align="center" width="30%">&nbsp;
+	    </td>
+	</tr>
+	</table>
+<!--/header-->
+</div>
+<!--main-->
+<div id="main">
+	<table width="100%" border="0" cellspacing="0" cellpadding="1" style="height:100%;">
+	<tr>
+	    <td style="vertical-align:top;">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+    		<tr>
+		    <!--left menu-->
+		    <td valign="top" background="img/lmenu_bg.gif" style="background-position: right; background-repeat: repeat-y; padding-top: 15px; padding-right: 5px" height="100%">
+{menu:h}
+		    </td>
+		    <!--/left menu-->
+		    <!--center-->
+		    <td width="100%" valign="top" style="padding-top: .2em; padding-left: .5em; padding-right: 1em; vertical-align:top;">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="2em">
+			<tr>
+			    <td width="50%"background="img/pic_blue.gif" style="background-position: bottom; background-repeat: repeat-x;" valign="bottom" nowrap>
+				<h3>{page_title}</h3>
+			    </td>
+			    <td width="30%">&nbsp;</td>
+			    <td width="20%" class="gray" nowrap>&nbsp;<span class="small">&nbsp;&nbsp;Сегодня:
+				<b class="blue">{date}</b></span>
+			    </td>
+			</tr>
+			</table>
+		    <br />
+		    {content:h}
+		    </td>
+		    <!--/center-->
+		</tr>
+		</table>
+	    </td>
+	</tr>
+	</table>
+<!--/main-->
+</div>
+<div id="bottom">
+<!--bottom-->
+	<span style="color: #ffffff; text-transform: uppercase; font-size: 85%;">{site_name}</span>
+<!--/bottom-->
+</div>
+</div>

@@ -1,0 +1,44 @@
+--- Table.php.new	2006-04-07 20:48:22.000000000 +0400
++++ Table.php	2006-04-07 21:56:00.000000000 +0400
+@@ -754,20 +754,20 @@
+ 
+             // check whether the chosen mode is supported
+             list($phptype,) = DB_Table::getPHPTypeAndDBSyntax($this->db);
+-            $mode_supported = DB_Table::modeSupported($flag, $phptype);
++            $mode_supported = DB_Table::modeSupported($create, $phptype);
+             if (PEAR::isError($mode_supported)) {
+                 return $mode_supported;
+             }
+             if (!$mode_supported) {
+                 return $this->throwError(
+                     DB_TABLE_ERR_CREATE_PHPTYPE,
+-                    "('$flag', '$phptype')"
++                    "('$create', '$phptype')"
+                 );
+             }
+ 
+             include_once 'DB/Table/Manager.php';
+ 
+-            switch ($flag) {
++            switch ($create) {
+ 
+                 case 'alter':
+                     $result = $this->alter();
+@@ -775,7 +775,7 @@
+ 
+                 case 'drop':
+                 case 'safe':
+-                    $result = $this->create($flag);
++                    $result = $this->create($create);
+                     break;
+ 
+                 case 'verify':
+@@ -863,7 +863,7 @@
+                 // unknown creation mode
+                 return $this->throwError(
+                     DB_TABLE_ERR_CREATE_FLAG,
+-                    "('$flag')"
++                    "('$mode')"
+                 );
+         }
+     }
