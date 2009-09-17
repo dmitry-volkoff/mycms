@@ -23,13 +23,6 @@ if (! isset($_SERVER['DOCUMENT_ROOT']))
 		);
 }
 
-//define('CHARSET', 'CP1251'); // now in -local
-
-//error_reporting(E_ALL);
-//ini_set("display_errors", true);
-//define('APP_DEBUG', 1);
-//define('USE_CACHE', 1);
-
 function __autoload($class_name) 
 {
 	if (substr($class_name, 0, 4) === 'blk_')
@@ -44,14 +37,6 @@ function __autoload($class_name)
 require_once("PEAR.php");
 PEAR::setErrorHandling(PEAR_ERROR_PRINT);
 //PEAR::setErrorHandling(PEAR_ERROR_RETURN);
-
-/**
- * Default table creation behaviour ('drop', 'alter', 'safe' or boolean false).
- */
-//define('TABLE_CREATE_MODE', false);
-define('TABLE_CREATE_MODE', 'safe');
-//define('TABLE_CREATE_MODE', 'alter');
-//define('TABLE_CREATE_MODE', 'drop');
 
 /**
  * Default url path (QUERY_STRING).
@@ -301,8 +286,8 @@ if ($dao_settings->error)
 //$dao_settings->fetchmode = DB_FETCHMODE_ASSOC;
 
 $res = $dao_settings->selectResult('all_fk_join');
-if (PEAR::isError($res)) { die('dao_settings error in config: '.$res->getMessage()); }
-if (! $res->numRows())
+//if (PEAR::isError($res)) { die('dao_settings error in config: '.$res->getMessage()); }
+if (PEAR::isError($res) || ! $res->numRows())
 { 
 	// init first time only 
 	/**
