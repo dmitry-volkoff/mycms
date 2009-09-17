@@ -116,6 +116,10 @@ class blk_menuadmin extends block
 		$page->menu_setup['settings']['link'] = '?q=settings&edit=1';
 		$page->menu_setup['settings']['style'] = ($q == 'settings' ? 'menuactive' : 'menulink');
 
+		$page->menu_setup['logout']['title'] = $tr->t('Logout');
+		$page->menu_setup['logout']['link'] = '?q=logout';
+		$page->menu_setup['logout']['style'] = 'menulink';
+
 		$tpl->compile($this->template);
 		return $tpl->bufferedOutputObject($page);
 	}

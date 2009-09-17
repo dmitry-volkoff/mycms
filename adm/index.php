@@ -66,6 +66,17 @@ if (! ($auth->checkAuth() && ((int)$auth->getAuthData('id') === 1)) )
 // Main controller
 $q = isset($_GET['q']) ? $_GET['q'] : '';
 $q = str_replace('.',':', $q);
+
+if ($q == "logout" && $auth->checkAuth()) 
+{
+	$auth->logout();
+	$auth->start();
+	$p->addBodyContent(login_form());
+	HTTP_Session::updateIdle();
+	$p->display();
+	exit;
+}
+
 if (! is_readable('./blk/blk_'.$q.'.php')) 
 { 
 	// lets try autodetect dictionary/datagrid block
