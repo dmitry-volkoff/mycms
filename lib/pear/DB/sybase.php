@@ -19,9 +19,9 @@
  * @author     Sterling Hughes <sterling@php.net>
  * @author     Antônio Carlos Venâncio Júnior <floripa@php.net>
  * @author     Daniel Convissor <danielc@php.net>
- * @copyright  1997-2005 The PHP Group
+ * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: sybase.php,v 1.82 2007/01/12 03:11:17 aharvey Exp $
+ * @version    CVS: $Id: sybase.php,v 1.87 2007/09/21 13:40:42 aharvey Exp $
  * @link       http://pear.php.net/package/DB
  */
 
@@ -44,9 +44,9 @@ require_once 'DB/common.php';
  * @author     Sterling Hughes <sterling@php.net>
  * @author     Antônio Carlos Venâncio Júnior <floripa@php.net>
  * @author     Daniel Convissor <danielc@php.net>
- * @copyright  1997-2005 The PHP Group
+ * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: @package_version@
+ * @version    Release: 1.7.14RC1
  * @link       http://pear.php.net/package/DB
  */
 class DB_sybase extends DB_common
@@ -479,7 +479,7 @@ class DB_sybase extends DB_common
                     return $this->raiseError($result);
                 }
             } elseif (!DB::isError($result)) {
-                $result =& $this->query("SELECT @@IDENTITY FROM $seqname");
+                $result = $this->query("SELECT @@IDENTITY FROM $seqname");
                 $repeat = 0;
             } else {
                 $repeat = false;
@@ -528,6 +528,22 @@ class DB_sybase extends DB_common
         return $this->query('DROP TABLE ' . $this->getSequenceName($seq_name));
     }
 
+    // }}}
+    // {{{ quoteFloat()
+
+    /**
+     * Formats a float value for use within a query in a locale-independent
+     * manner.
+     *
+     * @param float the float value to be quoted.
+     * @return string the quoted string.
+     * @see DB_common::quoteSmart()
+     * @since Method available since release 1.7.8.
+     */
+    function quoteFloat($float) {
+        return $this->escapeSimple(str_replace(',', '.', strval(floatval($float))));
+    }
+     
     // }}}
     // {{{ autoCommit()
 
@@ -679,6 +695,8 @@ class DB_sybase extends DB_common
                     => DB_ERROR_ALREADY_EXISTS,
                 '/^There are fewer columns in the INSERT statement than values specified/i'
                     => DB_ERROR_VALUE_COUNT_ON_ROW,
+                '/Divide by zero/i'
+                    => DB_ERROR_DIVZERO,
             );
         }
 
@@ -816,14 +834,24 @@ class DB_sybase extends DB_common
             $flags = array();
             $tableName = $table;
 
-            // get unique/primary keys
-            $res = $this->getAll("sp_helpindex $table", DB_FETCHMODE_ASSOC);
+            /* We're running sp_helpindex directly because it doesn't exist in
+             * older versions of ASE -- unfortunately, we can't just use
+             * DB::isError() because the user may be using callback error
+             * handling. */
+            $res = @sybase_query("sp_helpindex $table", $this->connection);
 
-            if (!isset($res[0]['index_description'])) {
+            if ($res === false || $res === true) {
+                // Fake a valid response for BC reasons.
                 return '';
             }
 
-            foreach ($res as $val) {
+            while (($val = sybase_fetch_assoc($res)) !== false) {
+                if (!isset($val['index_keys'])) {
+                    /* No useful information returned. Break and be done with
+                     * it, which preserves the pre-1.7.9 behaviour. */
+                    break;
+                }
+
                 $keys = explode(', ', trim($val['index_keys']));
 
                 if (sizeof($keys) > 1) {
@@ -838,6 +866,8 @@ class DB_sybase extends DB_common
                     }
                 }
             }
+
+            sybase_free_result($res);
 
         }
 
