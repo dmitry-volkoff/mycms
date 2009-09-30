@@ -125,18 +125,23 @@ $res = $pages->selectResult('all', 'link = '.$pages->quote($q));
 
 $active_id = 0; // menu active id
 $active_link = ''; // menu active link
+
+// initialize $page with site constants
 if (defined('SITE_NAME')) { $title = SITE_NAME; } // html title
-if (defined('SITE_NAME')) { $page->site_name = SITE_NAME; } // company name
-if (defined('SITE_FQDN')) { $page->site_fqdn = SITE_FQDN; } // company site url
-if (defined('SITE_PHONE')) { $page->site_phone = SITE_PHONE; }
-if (defined('SITE_PHONE2')) { $page->site_phone2 = SITE_PHONE2; }
-if (defined('SITE_ADDRESS')) { $page->site_address = SITE_ADDRESS; }
+
 if (defined('SITE_EMAIL')) 
 {
 	$addr = explode('@', SITE_EMAIL);
 	$page->site_email = '<script type="text/javascript">email("'.$addr[0].'","'.$addr[1].'");</script>';
 	$page->site_email .= '<noscript>'.$addr[0].' at '.$addr[1].'</noscript>';
 }
+
+$all_constants = get_defined_constants(true);
+foreach ($all_constants['user'] as $key => $value)
+{
+	$page->{strtolower($key)} = $value;
+}
+unset($all_constants);
 
 if (empty($title)) { $title = SITE_FQDN; }
 
