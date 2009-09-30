@@ -33,6 +33,17 @@ class dao_settings extends DB_Table
 				'size' => TEXTAREA_COLS,
 			),
 		),
+		// Company name
+		'cname' => array(
+			'type'    => 'varchar',
+			'size'    => 255,
+			'require' => true,
+			'qf_label' => 'Company Name',
+			'qf_type'  => 'text',
+			'qf_attrs'  => array(
+				'size' => TEXTAREA_COLS,
+			),
+		),
 		// Site mail
 		'email' => array(
 			'type'    => 'varchar',
