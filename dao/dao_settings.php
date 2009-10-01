@@ -37,7 +37,7 @@ class dao_settings extends DB_Table
 		'cname' => array(
 			'type'    => 'varchar',
 			'size'    => 255,
-			'require' => true,
+			'require' => false,
 			'qf_label' => 'Company Name',
 			'qf_type'  => 'text',
 			'qf_attrs'  => array(
