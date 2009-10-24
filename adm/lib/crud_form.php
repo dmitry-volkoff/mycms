@@ -15,6 +15,11 @@ require_once('../lib/dg_printer.php');
 class crud_form extends block
 {
 	/**
+	 * Primary index field name
+	 */    
+	var $id_field = 'id';
+
+	/**
 	 * Result Filter
 	 */    
 	var $filter = null;
@@ -264,19 +269,19 @@ class crud_form extends block
 		$act_edit = 
 			isset($_GET['action']) && 
 			$_GET['action'] === 'edit' && 
-			isset($_GET['id']) && 
-			is_numeric($_GET['id']);
+			isset($_GET[$this->id_field]) && 
+			is_numeric($_GET[$this->id_field]);
 
 		// if it is update form
 		if ($act_edit)
 		{
 			// fetch row with the given id
 			$view = 'all';
-			if ($this->dao->col['id']['type'] == 'integer')
+			if ($this->dao->col[$this->id_field]['type'] == 'integer')
 			{
-				$filter = 'id = '. (int)$_GET['id'];
+				$filter = $this->id_field .' = '. (int)$_GET[$this->id_field];
 			} else {
-				$filter = 'id = '. $this->dao->quote(urldecode($_GET['id']));
+				$filter = $this->id_field .' = '. $this->dao->quote(urldecode($_GET[$this->id_field]));
 			}
 
 			$res = $this->dao->selectResult($view, $filter);
@@ -284,7 +289,7 @@ class crud_form extends block
 
 			if (!$res->numRows()) {
 				//return PEAR::throwError($tr->t('No such ID'));
-				$this->error = $tr->t('No such ID') .': '.htmlspecialchars($_GET['id']);
+				$this->error = $tr->t('No such ID') .': '.htmlspecialchars($_GET[$this->id_field]);
 				$this->form =& new HTML_QuickForm('f_'.get_class($this), 'post', $query);
 				return false;
 			}
@@ -376,7 +381,7 @@ class crud_form extends block
 		{
 			// remove 'edit' if it is set
 			unset($query0['action']); 
-			unset($query0['id']); 
+			unset($query0[$this->id_field]); 
 			unset($query0['del_img']); 
 			$query = php_compat_http_build_query($query0);
 			$query = str_replace('&amp;','&', $query);
@@ -467,7 +472,7 @@ class crud_form extends block
 		$dg->_renderer->setTableAttribute('width', '100%');
 
 		// remove del/edit from QUERY_STRING in paging/sorting links
-		$dg->_renderer->_options['excludeVars'] = array('action', 'id', 'del_img');
+		$dg->_renderer->_options['excludeVars'] = array('action', $this->id_field, 'del_img');
 
 		// make links mod_rewrite compatible
 		//$dg->setDataSourceOptions('active' => false);	
@@ -623,14 +628,14 @@ class crud_form extends block
 			// this will be the base name of the photo file
 			$record_id = 0; 
 
-			if (isset($_POST['param']['id']) && $_POST['param']['id'])
+			if (isset($_POST['param'][$this->id_field]) && $_POST['param'][$this->id_field])
 			{
 				// update form
-				if ($this->dao->col['id']['type'] == 'integer')
+				if ($this->dao->col[$this->id_field]['type'] == 'integer')
 				{
-					$where = "id = ". (int)$_POST['param']['id'];
+					$where = $this->id_field ." = ". (int)$_POST['param'][$this->id_field];
 				} else {
-					$where = "id = ". $this->dao->quote($_POST['param']['id']);
+					$where = $this->id_field ." = ". $this->dao->quote($_POST['param'][$this->id_field]);
 				}
 				//echo 'where: '.htmlspecialchars($where).'<br />';
 				$res = @$this->dao->update($_POST['param'], $where);
@@ -638,7 +643,7 @@ class crud_form extends block
 				{ 
 					$this->error = $res->getMessage(); 
 				} else {
-					$record_id = (int)$_POST['param']['id'];
+					$record_id = (int)$_POST['param'][$this->id_field];
 					$this->message = $tr->t('Record updated successfully');
 				}
 			} else {
@@ -911,7 +916,7 @@ class crud_form extends block
 		// delete row
 		if (isset($_GET['del']) && is_numeric($_GET['del']))
 		{
-			$res = $this->dao->delete('id = '. (int)$_GET['del']);
+			$res = $this->dao->delete($this->id_field .' = '. (int)$_GET['del']);
 		}
 
 		// create the HTML_QuickForm object with all form variables in the array 'param'
@@ -950,8 +955,8 @@ class crud_form extends block
 		$act_edit = 
 			isset($_GET['action']) && 
 			$_GET['action'] === 'edit' && 
-			isset($_GET['id']) && 
-			is_numeric($_GET['id']);
+			isset($_GET[$this->id_field]) && 
+			is_numeric($_GET[$this->id_field]);
 
 		// if it is update form
 		if ($act_edit)
@@ -963,7 +968,7 @@ class crud_form extends block
 				$del_img = str_replace('.',':', substr($_GET['del_img'], 0, strlen($_GET['del_img']) - 4));
 
 				$upload_path = $this->upload_photo_abs_path . '/'. 
-					substr(get_class($this), 4) .'/'. (string)$_GET['id'];
+					substr(get_class($this), 4) .'/'. (string)$_GET[$this->id_field];
 				if (is_dir($upload_path) && 
 					file_exists($upload_path .'/'. $del_img .'.'.$this->img_type)) 
 				{
@@ -972,7 +977,7 @@ class crud_form extends block
 				}
 			}
 			// we have to show product photos in edit mode
-			$this->create_photo_section((int)$_GET['id']);
+			$this->create_photo_section((int)$_GET[$this->id_field]);
 		}
 
 		// Add something to output if needed
