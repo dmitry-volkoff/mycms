@@ -50,12 +50,14 @@ class dg_printer
 	function printEdit($params)
 	{
 		extract($params);
-		$id = $record['id'];
+
+		if (! isset($id_field)) { $id_field = 'id'; }
+		$id = $record[$id_field];
 		
 		if (! isset($_SERVER['QUERY_STRING'])) { $_SERVER['QUERY_STRING'] = ''; }
 		parse_str($_SERVER['QUERY_STRING'], $query);
 		$query['action'] = 'edit';
-		$query['id'] = $id;
+		$query[$id_field] = $id;
 		$query_new = php_compat_http_build_query($query);
 		return "<a href=\"?$query_new\">$label</a>";
 	}
@@ -64,12 +66,14 @@ class dg_printer
 	{
 		global $tr;
 		extract($params);
-		$id = $record['id'];
+
+		if (! isset($id_field)) { $id_field = 'id'; }
+		$id = $record[$id_field];
 
 		if (! isset($_SERVER['QUERY_STRING'])) { $_SERVER['QUERY_STRING'] = ''; }
 		parse_str($_SERVER['QUERY_STRING'], $query);
 		$query['action'] = 'delete';
-		$query['id'] = $id;
+		$query[$id_field] = $id;
 		$query_new = php_compat_http_build_query($query);
 		return "<a href=\"?$query_new\" onClick=\"if(!confirm('".$tr->t('Are you really want to delete this item?')."')){return false;}\">$label</a>";
 	}

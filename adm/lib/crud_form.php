@@ -531,9 +531,10 @@ class crud_form extends block
 	function add_special_columns(&$dg)
 	{
 		global $tr;
-		$column = new Structures_DataGrid_Column($tr->t('Edit'), null, null, array('align' => 'center', 'width' => '7%'), null, 'dg_printer::printEdit($label='.$tr->t('Edit').')');
+
+		$column = new Structures_DataGrid_Column($tr->t('Edit'), null, null, array('align' => 'center', 'width' => '7%'), null, 'dg_printer::printEdit($label='. $tr->t('Edit') .',$id_field='. $this->id_field .')');
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column($tr->t('Delete'), null, null, array('align' => 'center', 'width' => '7%'), null, 'dg_printer::printDelete($label='.$tr->t('Delete').')');
+		$column = new Structures_DataGrid_Column($tr->t('Delete'), null, null, array('align' => 'center', 'width' => '7%'), null, 'dg_printer::printDelete($label='.$tr->t('Delete'). ',$id_field='. $this->id_field .')');
 		$dg->addColumn($column);
 	}
 
