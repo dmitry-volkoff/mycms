@@ -1,1 +1,1 @@
-jquery-1.2.6.pack.js
+jquery-1.3.2.min.js
