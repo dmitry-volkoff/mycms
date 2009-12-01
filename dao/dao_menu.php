@@ -143,7 +143,7 @@ class dao_menu extends dao
 	function insert($data)
 	{
 		// force a new ID on the data
-		$data['id'] = $this->nextID();
+		//$data['id'] = $this->nextID(); // - this will be done in the parent class dao
 		$this->last_insert_id = $data['id'];
 
 		// set default menu type (main site menu)

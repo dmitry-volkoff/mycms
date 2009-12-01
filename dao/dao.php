@@ -129,7 +129,7 @@ class dao extends DB_Table
 	 * @return
 	 *     integer new ID or PEAR error object
 	 */
-	function insert($data) 
+	function insert(&$data) 
 	{
 		// force a new ID on the data
 		$data['id'] = $this->nextID();
