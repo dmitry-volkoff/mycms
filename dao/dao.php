@@ -103,6 +103,7 @@ class dao extends DB_Table
 	
 		$this->idx = array(
 			'id' => 'unique',
+			'name_'. $current_lang => 'normal',
 		);
 
 		$this->sql = array(
