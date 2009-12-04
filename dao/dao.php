@@ -72,8 +72,7 @@ class dao extends DB_Table
 		// Dynamic columns.
 		foreach($available_langs as $key => $lang) 
 		{
-
-			// real user name
+			// real i18n name
 			$this->col['name_' . $lang] = array(
 				'type' => 'varchar',
 				'size' => 255,
@@ -82,6 +81,16 @@ class dao extends DB_Table
 				'qf_type' => 'text',
 				'qf_attrs' => array(
 					'size' => TEXTAREA_COLS,
+				),
+			);
+			// Description - full item description
+			$this->col['description_' . $lang] = array(
+			'type'    => 'clob',
+			'qf_label' => 'Description ('. $lang .')',
+			'qf_type'  => 'textarea',
+			'qf_attrs'  => array(
+				'rows' => TEXTAREA_ROWS,
+				'cols' => TEXTAREA_COLS,
 				),
 			);
 		}
