@@ -40,7 +40,8 @@ class dao extends DB_Table
 		}
 
 		// Common columns.
-		if (isset($this->col['id'])) 
+		// Row ID
+		if (! isset($this->col['id'])) 
 		{
 			$this->col['id'] = array(
 				'type' => 'integer',
@@ -51,16 +52,22 @@ class dao extends DB_Table
 		}
 
 		// flag: Hide menu item
-		$this->col['hide'] = array(
-			'type' => 'boolean',
-			'qf_label' => 'Hide',
-		);
+		if (! isset($this->col['hide']))
+		{ 
+			$this->col['hide'] = array(
+				'type' => 'boolean',
+				'qf_label' => 'Hide',
+			);
+		}
 
 		// priority (relative position)
-		$this->col['priority'] = array(
-			'type' => 'integer',
-			'qf_label' => 'Priority',
-		);
+		if (! isset($this->col['priority']))
+		{
+			$this->col['priority'] = array(
+				'type' => 'integer',
+				'qf_label' => 'Priority',
+			);
+		}
 
 		// Dynamic columns.
 		foreach($available_langs as $key => $lang) 
