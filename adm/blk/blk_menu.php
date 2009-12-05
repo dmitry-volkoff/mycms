@@ -25,7 +25,7 @@ class blk_menu extends block
 		 */
 		// only show these fields
 		//$cols = array('id', 'type', 'name_ru', 'name_en', 'parent_id', 'link', 'priority');
-		$cols = array('id', 'type', 'name_ru', 'parent_id', 'link', 'hide', 'priority');
+		$cols = array('id', 'type', 'name_ru', 'parent_id', 'link', 'hide');
 
 		$act_edit = false;
 		$act_edit = 
