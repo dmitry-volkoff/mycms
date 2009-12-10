@@ -23,7 +23,6 @@ class blk_menuadmin extends block
 			'Pages'	=> 'site_pages&type=1',
 			'News'	=> 'site_pages&type=2',
 			'Articles' => 'site_pages&type=3',
-			'Examples' => 'examples',
 		);
 
 		$q0 = $q;
@@ -48,7 +47,7 @@ class blk_menuadmin extends block
 		 * Define main objects to manage
 		 */
 		$m_obj = array(
-			//'Products' => 'products', 
+			'Products' => 'products', 
 			//'Examples' => 'examples', 
 			);
 
@@ -114,7 +113,7 @@ class blk_menuadmin extends block
 		 * Define setup links
 		 */
 		$page->menu_setup['settings']['title'] = $tr->t('Settings');
-		$page->menu_setup['settings']['link'] = '?q=settings&edit=1';
+		$page->menu_setup['settings']['link'] = '?q=settings&action=edit&id=1';
 		$page->menu_setup['settings']['style'] = ($q == 'settings' ? 'menuactive' : 'menulink');
 
 		$page->menu_setup['logout']['title'] = $tr->t('Logout');
