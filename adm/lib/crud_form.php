@@ -221,7 +221,9 @@ class crud_form extends block
 			// add default 0 value to select list
 			$this->dao->col[$field]['qf_vals'][0] = ' -- ';
 
-			$res = $dao_fk->selectResult('all', 'hide IS NULL OR ! hide');
+			$filter = null;
+			if (isset($dao_fk->col['hide'])) { $filter = 'hide IS NULL OR ! hide'; }
+			$res = $dao_fk->selectResult('all', $filter);
 			if (PEAR::isError($res)) { $this->error = $res->getMessage(); return false; }
 
 			// assign select options
