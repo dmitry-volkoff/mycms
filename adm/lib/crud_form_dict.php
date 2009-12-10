@@ -31,7 +31,11 @@ class crud_form_dict extends crud_form
 	    'id',
 	    'name_'.$current_lang,
 	);
-	$this->include_cols_grid = $this->include_cols_form;	
+	$this->include_cols_grid = $this->include_cols_form;
+	if (isset($this->dao->col['description_' . $current_lang])) 
+	{ 
+		$this->include_cols_form[] = 'description_' . $current_lang; 
+	}
     } // end constructor
 }
 ?>

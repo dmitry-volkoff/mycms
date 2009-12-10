@@ -51,24 +51,6 @@ class dao extends DB_Table
 			);
 		}
 
-		// flag: Hide menu item
-		if (! isset($this->col['hide']))
-		{ 
-			$this->col['hide'] = array(
-				'type' => 'boolean',
-				'qf_label' => 'Hide',
-			);
-		}
-
-		// priority (relative position)
-		if (! isset($this->col['priority']))
-		{
-			$this->col['priority'] = array(
-				'type' => 'integer',
-				'qf_label' => 'Priority',
-			);
-		}
-
 		// Dynamic columns.
 		foreach($available_langs as $key => $lang) 
 		{
@@ -100,6 +82,24 @@ class dao extends DB_Table
 				);
 			}
 		} // foreach($available_langs as $key => $lang) 
+
+		// flag: Hide menu item
+		if (! isset($this->col['hide']))
+		{ 
+			$this->col['hide'] = array(
+				'type' => 'boolean',
+				'qf_label' => 'Hide',
+			);
+		}
+
+		// priority (relative position)
+		if (! isset($this->col['priority']))
+		{
+			$this->col['priority'] = array(
+				'type' => 'integer',
+				'qf_label' => 'Priority',
+			);
+		}
 	
 		$this->idx = array(
 			'id' => 'unique',
