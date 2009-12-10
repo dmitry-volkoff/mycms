@@ -1,0 +1,13 @@
+<ul id="nav-one" class="nav">
+{foreach:items,key,item}
+	<li><a href="{item[link]}">{item[name]}{if:item[childs]}&nbsp;&raquo;&nbsp;{end:}</a>
+	{if:item[childs]}
+		<ul>
+		{foreach:item[childs],key,child}
+			<li><a href="{child[link]}">{child[name]}</a></li>
+		{end:}
+		</ul>
+	{end:}
+	</li>
+{end:}
+</ul>

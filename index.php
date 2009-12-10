@@ -61,8 +61,8 @@ $p->addStyleSheet('style.css');
 // Add script
 $p->addScript('email.js');
 $p->addScript('bookmark.js');
-//$p->addScript('aserver.php?client=all');
-//$p->addScript('HTML_AJAX.js');
+//$p->addScript('jquery.js');
+//$p->addScript('jquery-menu.js');
 
 // Add base href
 $p->_links[] = '<base href="http://' .BASE_HREF. '"';
@@ -292,7 +292,7 @@ if (! is_readable('./tpl/'.$main_tpl))
 //echo '$active_id='.$active_id."<br>";
 // horizontal menu filter
 $page->active_id = $active_id;
-$page->menu_hor_filter = array(1,6,8,10);
+//$page->menu_hor_filter = array(1,6,8,10);
 
 $tpl->compile($main_tpl);
 

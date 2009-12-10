@@ -27,9 +27,9 @@ function __autoload($class_name)
 {
 	if (substr($class_name, 0, 4) === 'blk_')
 	{
-		require_once 'blk/'.$class_name . '.php';
+		include_once('blk/'.$class_name . '.php');
 	} else if (substr($class_name, 0, 3) === 'dao') {
-		require_once 'dao/'.$class_name . '.php';
+		include_once('dao/'.$class_name . '.php');
 	}
 }
 

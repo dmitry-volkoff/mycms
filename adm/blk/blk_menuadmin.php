@@ -71,7 +71,7 @@ class blk_menuadmin extends block
 				// create types tree submenu
 				include_once('./dao/' . $dao_name . '.php');
 				$dao =& new $dao_name;
-				$m = $dao->get_menu_array();
+				$m = $dao->get_sorted_tree_array();
 
 				$page->menu_objects[$q]['submenu'] = '<ul class="sub">';
 
@@ -99,6 +99,7 @@ class blk_menuadmin extends block
 		 */
 		$m_dict = array(
 			'Page Types'    => 'page_types',
+			'Product Types' => 'product_types',
 			'Currency' 	=> 'currencies',
 		);
 

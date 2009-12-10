@@ -402,6 +402,7 @@ class crud_form extends block
 		return true;
 	} // function create_form()
 
+
 	/**
 	 * Custom field definitions (overwrite in child class)
 	 */
@@ -915,10 +916,51 @@ class crud_form extends block
 		$out .= $this->content_add_before();
 
 		// delete row
-		if (isset($_GET['del']) && is_numeric($_GET['del']))
+		$act_delete = false;
+		$act_delete = 
+			isset($_GET['action']) && 
+			$_GET['action'] === 'delete' && 
+			isset($_GET['id']) && 
+			is_numeric($_GET['id']);
+
+		if ($act_delete)
 		{
-			$res = $this->dao->delete($this->id_field .' = '. (int)$_GET['del']);
+			if (isset($this->dao->col['parent_id']))
+			{
+				$res = $this->dao->delete_recursive((int)$_GET['id']);
+			} else {
+				$this->dao->delete($this->id_field .' = '. (int)$_GET['del']);
+			}
+			// redraw parents select after delete
+			$form =& $this->create_form($dao);
 		}
+
+		// shift Up priority
+		$act_shift_up = false;
+		$act_shift_up = 
+			isset($_GET['action']) && 
+			$_GET['action'] === 'up' && 
+			isset($_GET['id']) && 
+			is_numeric($_GET['id']);
+
+		if ($act_shift_up)
+		{
+			$this->dao->shift_priority($_GET['id']);
+		}
+
+		// shift Down priority
+		$act_shift_down = false;
+		$act_shift_down = 
+			isset($_GET['action']) && 
+			$_GET['action'] === 'down' && 
+			isset($_GET['id']) && 
+			is_numeric($_GET['id']);
+
+		if ($act_shift_down)
+		{
+			$this->dao->shift_priority($_GET['id'], 'down');
+		}
+
 
 		// create the HTML_QuickForm object with all form variables in the array 'param'
 		$this->create_form();

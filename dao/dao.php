@@ -177,6 +177,95 @@ class dao extends DB_Table
 		}
 	}
 
+	/**
+	 * Handle recursive deletes of children
+	 *
+	 * @param id 
+	 *    menu item id to delete
+	 * @return integer deleted ID or PEAR error object
+	 */
+	function delete_recursive($id)
+	{
+		//echo 'id: ';
+		//echo $id;
+		//echo '<br>';
+
+		$id = (int) $id;
+		if (! $id) { return false; }
+
+
+		$view = 'all';
+		$where = 'parent_id = ' . $this->quote($id);
+
+		// check if there are any children
+		$res = $this->selectResult('all', $where);
+
+		// if no result, then stop recursion and just delete this item
+		if (!$res->numRows()) {
+			$where = 'id = ' . $this->quote($id);
+			return parent::delete($where);
+		}
+		while($row = $res->fetchrow())
+		{
+			$this->delete_recursive($row->id);
+		}
+
+		// finally delete requested id
+		$where = 'id = ' . $this->quote($id);
+		return parent::delete($where);
+	} // function delete_recursive($id)
+
+
+	/**
+	 * Create properly sorted tree array (nested set emulation).
+	 */
+	function &get_sorted_tree_array()
+	{
+		global $current_lang, $tr;
+
+		$m = array();	
+
+		$order = 'parent_id, priority';
+		$res = $this->selectResult('all', null, $order);
+		if (PEAR::isError($res)) { echo $res->getMessage(); }
+
+		// collect array of hidden parent
+		$parent_hide = array();
+
+		// make an aray with special sort column
+		// sort column format: parent_id + priority + id (e.g. '000 001 002')
+		while ($row = $res->fetchrow())
+		{
+			if ($row->hide || in_array($row->parent_id, $parent_hide)) 
+			{ 
+				$parent_hide[] = $row->id; continue; 
+			}
+			
+			if (! isset($m[$row->id]['sort'])) { $m[$row->id]['sort'] = ''; }
+			
+			$m[$row->id]['sort'] .= ($row->parent_id ? $m[$row->parent_id]['sort'] : '000000') .
+				sprintf("%06s", $row->priority) . 
+				sprintf("%06s", $row->id) ; 
+			$m[$row->id]['name'] = $row->{'name_'.$current_lang} ? $row->{'name_'.$current_lang} : 
+				($current_lang == 'en' ? $tr->tl($row->name_ru) : $row->name_en);
+			//if ($m[$row->id]['name'])
+
+			$m[$row->id]['id'] = $row->id; 
+			$m[$row->id]['link'] = $row->link; 
+			$m[$row->id]['parent_id'] = $row->parent_id; 
+		}
+
+		reset($m);
+		$m0 = array();
+		foreach($m as $id => $val)
+		{
+			$m0[] = $m["$id"]['sort'];
+		}
+
+		array_multisort($m0, SORT_ASC, SORT_STRING, $m);
+		return $m;
+	} // function &get_sorted_tree_array()
+
 
 	/**
 	 * Shift Up/Down priority of a given record

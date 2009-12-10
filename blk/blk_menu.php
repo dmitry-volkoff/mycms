@@ -55,9 +55,14 @@ class blk_menu extends block
 		}
 
 		$menu = new $this->dao_name();
-		$menu->sql['parent_join']['where'] = '(hide IS NULL OR ! hide)'; 
+		$iq = 'quoteIdentifier';
+		$menu->sql['parent_join']['where'] = '('.
+			$menu->table . '.' . $menu->db->$iq('hide') . ' IS NULL OR ! '. 
+			$menu->table . '.' . $menu->db->$iq('hide') .')'; 
 		
-		$res = $menu->selectResult('all', 'link = ' . $menu->quote($this->active_link)); 
+		$res = $menu->selectResult('all', 
+			$menu->table . '.' . $menu->db->$iq('link') . ' = ' . 
+				$menu->quote($this->active_link)); 
 	
 		$q1 = ''; $arg_num =& common::arg_num();
 		if ((! $res->numRows()) && ($arg_num != 0))
@@ -82,7 +87,7 @@ class blk_menu extends block
 		}
 
 		// get a sorted array with menu items
-		$m = $menu->get_menu_array();
+		$m = $menu->get_sorted_tree_array();
 		/*
 		echo '<pre>';
 		print_r($m);

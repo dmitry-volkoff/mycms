@@ -158,7 +158,7 @@ class blk_site_pages extends block
 	include_once('../dao/dao_page_types.php');
 	$page_types =& new dao_page_types;
 	$this->dao->col['type']['qf_vals'][0] = ' -- ';
-	$m = $page_types->get_menu_array();
+	$m = $page_types->get_sorted_tree_array();
 	//echo '<pre>';
 	//print_r($m);
 	//echo '</pre>';
@@ -178,7 +178,7 @@ class blk_site_pages extends block
 	include_once('../dao/dao_menu.php');
 	$menu =& new dao_menu;
 	$this->dao->col['menu_liaison']['qf_vals'][0] = ' -- ';
-	$m = $menu->get_menu_array();
+	$m = $menu->get_sorted_tree_array();
 	//echo '<pre>';
 	//print_r($m);
 	//echo '</pre>';

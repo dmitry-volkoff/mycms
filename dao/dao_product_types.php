@@ -1,6 +1,6 @@
 <?php
 /**
- * DAO menu
+ * DAO product_types
  *
  * @author vdb
  */
@@ -8,12 +8,12 @@
 //require_once('DB.php');
 //require_once('DB/Table.php');
 
-class dao_menu extends dao
+class dao_product_types extends dao
 {
 	/**
 	 * Constructor (php4).
 	 */     
-	function dao_menu($table = '', $create = TABLE_CREATE_MODE)
+	function dao_product_types($table = '', $create = TABLE_CREATE_MODE)
 	{
 		$this->__construct($table, $create);
 	}
@@ -36,13 +36,6 @@ class dao_menu extends dao
 				'qf_type' => 'hidden',
 				'qf_label' => 'ID',
 			),
-			// menu type
-			'type' => array(
-				'type'    => 'integer',
-				'require' => true,
-				'qf_type' => 'hidden',
-				'qf_label' => 'Type',
-			),	 
 			// parent ID
 			'parent_id' => array(
 				'type'    => 'integer',
@@ -94,44 +87,10 @@ class dao_menu extends dao
 			'join'   => $join,
 			'order'  => $order,
 		);
+		
+		$this->fk['parent_id']  = 'product_types'; // self join
 	} // function __construct($table = '', $create = TABLE_CREATE_MODE)
 
-
-	/** 
-	 * Override the parent create() 
-	 *
-	 * Remember to include the creation 
-	 * flag parameter!
-	 */
-/*************
-	function create($flag)
-	{
-	global $tr;
-	// call the parent create() first
-	$result = parent::create($flag);
-
-	// was the table created?
-	if (PEAR::isError($result) || ! $result) 
-	{
-		// table not created
-		return $result;
-	} else {
-		// table created successfully; insert a first row...
-		$cols_vals = 
-		array(
-		'parent_id' => 0,
-		'name_ru'   => $tr->t('Home'),
-		'name_en'   => 'Home',
-		'link'      => '',
-		'type'      => 1,
-		'priority'  => 0,
-		);
-		$result = $this->insert($cols_vals);
-		// ... and return the insert results.
-		return $result;
-	}
-	}
-**************/
 
 	/**
 	 * Handle inserts
@@ -141,21 +100,8 @@ class dao_menu extends dao
 	 * @return 
 	 *     integer new ID or PEAR error object
 	 */
-	function insert($data)
-	{
-		// set default menu type (main site menu)
-		if (! isset($data['type']) || ! $data['type']) { $data['type'] = 1; }
-
-		// auto-validate and insert
-		$result = parent::insert($data);
-		// check the result of the insert attempt
-		if (PEAR::isError($result)) {
-			// return the error
-			return $result;
-		} else {
-			// return the new ID
-			return $data['id'];
-		}
-	} // function insert($data)
+	//function insert($data)
+	//{
+	//} // function insert($data)
 }
 ?>

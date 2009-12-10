@@ -95,67 +95,8 @@ class dao_page_types extends DB_Table
 	 * @return 
 	 *     integer new ID or PEAR error object
 	 */
-	function insert($data)
-	{
-		// force a new ID on the data
-		$data['id'] = $this->nextID();
-		$this->last_insert_id = $data['id'];
-
-		// auto-validate and insert
-		$result = parent::insert($data);
-		// check the result of the insert attempt
-		if (PEAR::isError($result)) {
-			// return the error
-			return $result;
-		} else {
-			// return the new ID
-			return $data['id'];
-		}
-	}
-
-	/**
-	 * Create properly sorted array of items
-	 */
-	function &get_menu_array()
-	{
-		global $current_lang, $tr;
-
-		$m = array();	
-
-		//$order = 'parent_id, priority';
-		$order = 'priority';
-		$res = $this->selectResult('all', null, $order);
-		if (PEAR::isError($res)) { echo $res->getMessage(); }
-
-		// make an aray with special sort column
-		// sort column format: parent_id + priority + id (e.g. '000 001 002')
-		while ($row = $res->fetchrow())
-		{
-			if ($row->hide) { continue; }
-			if (! isset($m[$row->id]['sort'])) { $m[$row->id]['sort'] = ''; }
-			$m[$row->id]['sort'] .= (isset($row->parent_id) ? $m[$row->parent_id]['sort'] : '000000');
-			$m[$row->id]['sort'] .= '000000' .
-				sprintf("%06s", $row->priority) . 
-				sprintf("%06s", $row->id) ; 
-			$m[$row->id]['name'] = 
-				$row->{'name_'.$current_lang} ? $row->{'name_'.$current_lang} : 
-				($current_lang == 'en' ? $tr->tl($row->name_ru) : $row->name_en);
-			//if ($m[$row->id]['name'])
-
-			$m[$row->id]['id'] = $row->id; 
-			//$m[$row->id]['link'] = $row->link; 
-			//$m[$row->id]['parent_id'] = $row->parent_id; 
-		}
-
-		reset($m);
-		$m0 = array();
-		foreach($m as $id => $val)
-		{
-			$m0[] = $m["$id"]['sort'];
-		}
-
-		array_multisort($m0, SORT_ASC, SORT_STRING, $m);
-		return $m;
-	} // function &get_menu_array()
+	//function insert($data)
+	//{
+	//}
 }
 ?>

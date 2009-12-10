@@ -125,7 +125,7 @@ class blk_menu extends block
 		$menu->col['parent_id']['qf_vals'][0] = '/';
 
 		// get a sorted array with menu items
-		$m = $menu->get_menu_array();
+		$m = $menu->get_sorted_tree_array();
 
 		// now assign select options
 		foreach($m as $id => $val)
@@ -270,6 +270,12 @@ class blk_menu extends block
 		$column = new Structures_DataGrid_Column($tr->t('Parent'), 'pname_'.$current_lang, 'parent_id');
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column($tr->t('Link'), 'link', 'link');
+		$dg->addColumn($column);
+
+		$column =& new Structures_DataGrid_Column($tr->t('Hide'), 'hide', 'hide',
+					array('align' => 'center', 'width' => '7%'), 
+					null, 
+					'dg_printer::printBool($field=hide)');
 		$dg->addColumn($column);
 
 		$column = new Structures_DataGrid_Column($tr->t('Up'), null, null, array('align' => 'center'), null, 'dg_printer::printUp($label=&#8593)');

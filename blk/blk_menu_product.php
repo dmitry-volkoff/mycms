@@ -49,7 +49,7 @@ class blk_menu_product extends block
 		$menu->sql['parent_join']['where'] = '(hide IS NULL OR ! hide)'; 
 
 		// get a sorted array with menu items
-		$m = $menu->get_menu_array();
+		$m = $menu->get_sorted_tree_array();
 
 		// Find out active menu item; if we have active childs, then assign parent as active. 
 		$active_parent = 0;
