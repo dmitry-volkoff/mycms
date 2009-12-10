@@ -191,6 +191,11 @@ class crud_form extends block
 			$this->exclude_cols_grid[] = 'description_'.$current_lang;
 		}
 
+		if (isset($this->dao->col['date_enter']))
+		{
+			$this->exclude_cols_grid[] = 'date_enter';
+		}
+
 		/**
 		 * Define set of fields to show on form and grid (overwtite in child class)
 		 */
@@ -202,6 +207,12 @@ class crud_form extends block
 		$this->upload_thumb_abs_path = realpath(dirname($_SERVER["SCRIPT_FILENAME"]).'/../').
 			'/'. $this->upload_thumb_rel_path;
 
+		// Default search fields
+		if (isset($this->dao->col['name_' . $current_lang]))
+		{
+			$this->search_fields = array('name_'.$current_lang);
+		}
+		
 		//$this->define_data_filter();
 		//$this->filter_form();
 
