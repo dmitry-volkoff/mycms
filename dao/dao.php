@@ -163,6 +163,12 @@ class dao extends DB_Table
 		{
 			$data['priority'] = time();
 		}
+
+		// default entering date
+		if (isset($this->col['date_enter']) && ! isset($data['date_enter'])) 
+		{
+			$data['date_enter'] = date('Y-m-d');;
+		}
 		
 		// auto-validate and insert
 		$result = parent::insert($data);

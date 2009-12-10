@@ -115,6 +115,10 @@ class crud_form extends block
 	 */
 	var $search_fields = array();
 
+	/**
+	 * Flag whether to display priority arrows in the grid
+	 */
+	var $show_grid_priority = false;
 
 	/**
 	 * Constructor (php4)
@@ -169,6 +173,22 @@ class crud_form extends block
 		{
 			$this->exclude_cols_grid[] = 'name_'.$lang;
 			$this->exclude_cols_form[] = 'name_'.$lang;
+			if (isset($this->dao->col['description_' . $lang]))
+			{
+				$this->exclude_cols_grid[] = 'description_'.$lang;
+				$this->exclude_cols_form[] = 'description_'.$lang;				
+			}
+		}
+		
+		if (isset($this->dao->col['priority']))
+		{
+			$this->exclude_cols_grid[] = 'priority';
+			$this->exclude_cols_form[] = 'priority';
+		}
+
+		if (isset($this->dao->col['description_' . $current_lang]))
+		{
+			$this->exclude_cols_grid[] = 'description_'.$current_lang;
 		}
 
 		/**
@@ -526,7 +546,7 @@ class crud_form extends block
 			//echo $showfield .'<br>';
 		}
 		$this->add_special_columns($dg);
-	}
+	} // function dg_def_columns(&$dg)
 
 	/**
 	 * Define special service columns.
@@ -534,6 +554,14 @@ class crud_form extends block
 	function add_special_columns(&$dg)
 	{
 		global $tr;
+		
+		if ($this->show_grid_priority)
+		{
+		$column = new Structures_DataGrid_Column($tr->t('Up'), null, null, array('align' => 'center'), null, 'dg_printer::printUp($label=&#8593)');
+		$dg->addColumn($column);
+		$column = new Structures_DataGrid_Column($tr->t('Down'), null, null, array('align' => 'center'), null, 'dg_printer::printDown($label=&#8595;)');
+		$dg->addColumn($column);
+		}
 
 		$column = new Structures_DataGrid_Column($tr->t('Edit'), null, null, array('align' => 'center', 'width' => '7%'), null, 'dg_printer::printEdit($label='. $tr->t('Edit') .',$id_field='. $this->id_field .')');
 		$dg->addColumn($column);
