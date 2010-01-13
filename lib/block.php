@@ -48,17 +48,16 @@ class block
 
 	function out($static_html_part = '')
 	{
-		global $cache_options;
-		//require_once('Cache/Lite.php'); 
+		global $cache;
 
-		$blk_cache = new Cache_Lite(array_merge($cache_options, array('caching' => $this->cache)));
+		$cache->setOption('caching', $this->cache);
 		$data = '';
-		if (! $data = $blk_cache->get(get_class($this))) 
+		if (! $data = $cache->get(get_class($this))) 
 		{
 			$this->content = new stdClass;
 			$this->content->static_html =& $static_html_part;
 			$data = $this->output();
-			$blk_cache->save($data);
+			$cache->save($data);
 		}
 		return $data;
 	} // function out($static_html_part = '')

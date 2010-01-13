@@ -456,8 +456,11 @@ $tpl = new HTML_Template_Flexy($flexy_options);
 $cache_options = array(
 	'cacheDir' => './tmp/',
 	'lifeTime' => 600,
-	'pearErrorMode' => 'CACHE_LITE_ERROR_DIE',
+	'hashedDirectoryLevel' => 1,
+	'caching' => true,
 );
 
-include_once('Cache/Lite.php');
+//include_once('Cache/Lite.php');
+include_once('lib/cache-lite.php');
+$cache = new Cache_Lite($cache_options);
 ?>
