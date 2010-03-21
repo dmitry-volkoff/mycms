@@ -97,6 +97,7 @@ class rssnews extends block
 
 	protected function charset_convert($str)
 	{
+		if (CHARSET == "UTF-8") { return $str; }
 		return @iconv("UTF-8", $this->charset_convert_to, $str);
 	}
 
