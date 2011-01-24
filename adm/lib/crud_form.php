@@ -970,7 +970,7 @@ class crud_form extends block
 			{
 				$res = $this->dao->delete_recursive((int)$_GET['id']);
 			} else {
-				$this->dao->delete($this->id_field .' = '. (int)$_GET['del']);
+				$this->dao->delete($this->id_field .' = '. (int)$_GET['id']);
 			}
 			// redraw parents select after delete
 			$form =& $this->create_form($dao);
