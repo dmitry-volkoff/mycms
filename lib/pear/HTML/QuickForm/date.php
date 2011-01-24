@@ -272,6 +272,8 @@ class HTML_QuickForm_date extends HTML_QuickForm_group
         $this->_persistantFreeze = true;
         $this->_appendName = true;
         $this->_type = 'date';
+        $this->_options['minYear'] = date('Y') - 2;
+        $this->_options['maxYear'] = date('Y') + 1;
         // set the options, do not bother setting bogus ones
         if (is_array($options)) {
             foreach ($options as $name => $value) {
