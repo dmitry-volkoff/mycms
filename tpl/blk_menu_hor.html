@@ -1,10 +1,10 @@
 {foreach:items,key,item}
 {if:item[active]}
 <!-- Start Active Menu -->
-<span class="slash">/</span><span class="active"><a href="{item[link]}">{item[name]}</a></span>
+<span class="slash">/</span><span class="active"><a href="{item[link]}"flexy:raw="{item[link_par]:h}">{item[name]}</a></span>
 <!-- Stop Active Menu -->
 {else:}
-<span class="slash">/</span><a href="{item[link]}">{item[name]}</a>
+<span class="slash">/</span><a href="{item[link]}"flexy:raw="{item[link_par]:h}">{item[name]}</a>
 {end:}
 {end:}
 <span class="slash">/</span>

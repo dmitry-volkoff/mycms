@@ -56,6 +56,15 @@ class dao_menu extends dao
 				'size'    => 255,
 				'qf_label' => 'Link',
 			),
+			// Link parameters (class, id, onClick etc.)
+			'link_par' => array(
+				'type'    => 'varchar',
+				'size'    => 255,
+				'qf_label' => 'Link Param',
+				'qf_attrs' => array(
+	 				'size' => TEXTAREA_COLS,
+				),
+			),
 		);
 
 		parent::__construct($table);

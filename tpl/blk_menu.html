@@ -5,9 +5,9 @@
 	<td class="menu-plate menu{key}">
 		<table class="menu parent" border="0" cellpadding="0" cellspacing="0" width="100%"> 
 		<tr>
-			<td class="active parent{item[odd_position]}"><a href="{item[link]}">{item[name]}</a></td>
+			<td class="active parent{item[odd_position]}"><a href="{item[link]}"flexy:raw="{item[link_par]:h}">{item[name]}</a></td>
 			<td class="icon active parent{item[odd_position]}">
-			<a href="{item[link]}"><img style="margin-right:25px;" src="img/marker-menu2.gif" alt="" border="0px" width="11px" height="11px" /></a>
+			<a href="{item[link]}"flexy:raw="{item[link_par]:h}"><img style="margin-right:25px;" src="img/marker-menu2.gif" alt="" border="0px" width="11px" height="11px" /></a>
 			</td>
 		</tr>
 		</table><br />
@@ -18,9 +18,9 @@
 	<td class="menu-plate menu{key}">
 		<table class="menu parent" border="0" cellpadding="0" cellspacing="0" width="100%"> 
 		<tr>
-			<td class="active parent{item[odd_position]}"><a href="{item[link]}">{item[name]}</a></td>
+			<td class="active parent{item[odd_position]}"><a href="{item[link]}"flexy:raw="{item[link_par]:h}">{item[name]}</a></td>
 			<td class="icon active parent{item[odd_position]}">
-			<a href="{item[link]}"><img style="margin-right:25px;" src="img/marker-menu2.gif" alt="" border="0px" width="11px" height="11px" /></a>
+			<a href="{item[link]}"flexy:raw="{item[link_par]:h}"><img style="margin-right:25px;" src="img/marker-menu2.gif" alt="" border="0px" width="11px" height="11px" /></a>
 			</td>
 		</tr>
 		</table><br />
@@ -37,11 +37,11 @@
 			{if:child[odd_position]}
 			<td class="icon child{child[odd_position]}"><img border="0" alt="" width="4px" height="3px" src="img/marker-menu.gif" /></td>
 			<td>&nbsp;</td>
-			<td class="child{child[odd_position]}"><a href="{child[link]}">{child[name]}</a></td>
+			<td class="child{child[odd_position]}"><a href="{child[link]}"flexy:raw="{child[link_par]}">{child[name]}</a></td>
 			{else:}
 			<td class="icon child{child[odd_position]}"><img border="0" alt="" width="4px" height="3px" src="img/marker-menu.gif" /></td>
 			<td>&nbsp;</td>
-			<td class="child{child[odd_position]}"><a href="{child[link]}">{child[name]}</a></td>
+			<td class="child{child[odd_position]}"><a href="{child[link]}"flexy:raw="{child[link_par]}">{child[name]}</a></td>
 			{end:}
 		</tr>	
 		{end:}

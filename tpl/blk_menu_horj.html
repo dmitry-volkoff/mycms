@@ -1,10 +1,10 @@
 <ul id="nav-one" class="nav">
 {foreach:items,key,item}
-	<li><a href="{item[link]}">{item[name]}{if:item[childs]}&nbsp;&raquo;&nbsp;{end:}</a>
+	<li><a href="{item[link]}"flexy:raw="{item[link_par]:h}">{item[name]}{if:item[childs]}&nbsp;&raquo;&nbsp;{end:}</a>
 	{if:item[childs]}
 		<ul>
 		{foreach:item[childs],key,child}
-			<li><a href="{child[link]}">{child[name]}</a></li>
+			<li><a href="{child[link]}"flexy:raw="{child[link_par]:h}">{child[name]}</a></li>
 		{end:}
 		</ul>
 	{end:}

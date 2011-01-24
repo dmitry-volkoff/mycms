@@ -145,6 +145,7 @@ class blk_menu extends block
 					{ $page->items[$val['parent_id']]['childs'][$i]['index_first'] = true; }
 					$page->items[$val['parent_id']]['childs'][$i]['name'] = $val['name'];
 					$page->items[$val['parent_id']]['childs'][$i]['link'] =& common::get_url_path($val['link']);
+					$page->items[$val['parent_id']]['childs'][$i]['link_par'] = $val['link_par'];
 					$page->items[$val['parent_id']]['childs'][$i]['odd_position'] = (fmod($child_pos,2) ? ' odd' : '');
 					$child_pos++;
 				}
@@ -153,6 +154,7 @@ class blk_menu extends block
 			$active = ($val['id'] ==  $active_parent);
 			$page->items[$i]['name'] = $val['name'];
 			$page->items[$i]['link'] =& common::get_url_path($val['link']);
+			$page->items[$i]['link_par'] = $val['link_par'];
 			$page->items[$i]['active'] = $active;
 			if ($active) { $active_parent = $val['id']; }
 	    
