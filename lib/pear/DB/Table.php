@@ -1296,6 +1296,9 @@ class DB_Table {
             // get the elements of the query ...
             $count_sql = $this->sql[$sqlkey];
             
+            // no need to apply order in the select count(*) statement
+            $count_sql['order'] = null; 
+            
             // is a count-field set for the query?
             if (! isset($count_sql['count']) ||
                 trim($count_sql['count']) == '') {
