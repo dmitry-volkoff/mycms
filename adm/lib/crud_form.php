@@ -949,6 +949,9 @@ class crud_form extends block
 		$this->filter = $this->dao->sql[$this->view]['where'] = 
 			(count($this->where_add) ? implode(' AND ',$this->where_add) : ''); 
 
+		isset($this->dao->sql['__count_' . $this->view]) && 
+			($this->dao->sql['__count_' . $this->view]['where'] = $this->filter);
+
 		$this->handle_submit_request();
 
 		$this->filter_form();
