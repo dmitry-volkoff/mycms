@@ -258,6 +258,7 @@ class dao extends DB_Table
 
 			$m[$row->id]['id'] = $row->id; 
 			$m[$row->id]['link'] = $row->link; 
+			$m[$row->id]['link_par'] = isset($row->link_par) ? $row->link_par : '';
 			$m[$row->id]['parent_id'] = $row->parent_id; 
 		}
 
