@@ -3,7 +3,7 @@
  *
  * \section intro_sec Introduction
  *
- * Footbolka.ru shop.
+ * MyCMS
  * @author vdb
  * @version CVS: $Id$
  */
